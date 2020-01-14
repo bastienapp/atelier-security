@@ -5,6 +5,7 @@
     <title>Register</title>
 </head>
 <body>
+<h1>Sign Up</h1>
 <form th:action="@{/registration}" method="post" th:object="${userForm}">
     <input th:type="hidden" th:field="*{id}">
     <label for="username">Username</label>

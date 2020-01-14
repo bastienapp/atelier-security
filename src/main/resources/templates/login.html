@@ -5,12 +5,15 @@
     <title>Login</title>
 </head>
 <body>
+<h1>Sign In</h1>
 <strong th:text="${error}">Errors</strong><br>
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>
     <input id="username" name="username" type="text"><br>
     <label for="password">Password</label>
     <input id="password" name="password" type="password"><br>
+    <input id="remember-me" type="checkbox" name="remember-me" />
+    <label for="remember-me">Remember me</label><br>
     <input type="submit" value="Login">
 </form>
 <br><a th:href="@{/registration}">Register</a>
