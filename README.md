@@ -2,14 +2,17 @@
 
 Créer les *entities* suivantes :
 
-* `User` : Long id, String username, String password, String passwordConfirm (ne doit pas être enregistré en base de données), Set<Role> roles
-* `Role` :  Long id, String name, Set<User> users
+* `User` : `Long id`, `String username`, `String password`, `String passwordConfirm` (ne doit pas être un champs en base de données), `Set<Role> roles`
+* `Role` :  `Long id`, `String name`, `Set<User> users`
 
-Créer les *repositories* correspondant.
+Créer les *repositories*  :
 
-`UserRepository` aura une méthode `findByUsername`.
+* `UserRepository`, qui aura une méthode `findByUsername`.
+* `RoleRepository`
 
-Créer un package `service` avec les classes et interfaces suivantes :
+Créer un package `service` avec les services et leurs implémentations suivantes :
+
+* `UserDetailsServiceImpl`
 
 ``` java
 import com.hellokoding.auth.model.Role;
@@ -48,12 +51,17 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 }
 ```
 
+* `SecurityService`
+
 ``` java
 public interface SecurityService {
     String findLoggedInUsername();
 
     void autoLogin(String username, String password);
 }
+```
+
+* `SecurityServiceImpl`
 
 ``` java
 import org.slf4j.Logger;
@@ -101,6 +109,8 @@ public class SecurityServiceImpl implements SecurityService{
 }
 ```
 
+* `UserService`
+
 ``` java
 package com.hellokoding.auth.service;
 
@@ -112,6 +122,8 @@ public interface UserService {
     User findByUsername(String username);
 }
 ```
+
+* `UserServiceImpl`
 
 ``` java
 import com.hellokoding.auth.model.User;
@@ -173,7 +185,7 @@ public String registration(@ModelAttribute("userForm") User userForm) {
 }
 ```
 
-Mettre en place un héritage de `WebSecurityConfigurerAdapter`, nommé `WebSecurityConfig` :
+Créer un package `config` et mettre en place un héritage de `WebSecurityConfigurerAdapter`, nommé `WebSecurityConfig` :
 
 ``` java
 import org.springframework.beans.factory.annotation.Autowired;
